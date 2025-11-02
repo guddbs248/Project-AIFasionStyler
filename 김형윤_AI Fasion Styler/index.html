@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>패션 스타일링 AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>👔 패션 스타일링 AI</h1>
+            <p>당신의 일정에 맞는 완벽한 코디를 추천해드립니다</p>
+        </header>
+
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link active">🏠 메인</a>
+            <a href="add-clothing.html" class="nav-link">➕ 옷 등록</a>
+        </nav>
+
+        <div class="main-content">
+            <!-- 옷장 관리 섹션 -->
+            <section class="wardrobe-section">
+                <h2>👔 내 옷장</h2>
+                <div class="wardrobe-filter">
+                    <select id="filter-category">
+                        <option value="">전체 카테고리</option>
+                        <option value="아우터">아우터</option>
+                        <option value="상의">상의</option>
+                        <option value="하의">하의</option>
+                        <option value="신발">신발</option>
+                    </select>
+                    <select id="filter-season">
+                        <option value="">전체 계절</option>
+                        <option value="봄">봄</option>
+                        <option value="여름">여름</option>
+                        <option value="가을">가을</option>
+                        <option value="겨울">겨울</option>
+                        <option value="사계절">사계절</option>
+                    </select>
+                </div>
+                <div class="wardrobe-list" id="wardrobe-list">
+                    <p class="empty-message">옷장이 비어있습니다. 옷을 등록해주세요.</p>
+                </div>
+            </section>
+
+            <!-- 일정 관리 섹션 -->
+            <section class="schedule-section">
+                <h2>📅 주간 일정 및 날씨</h2>
+                <div class="calendar">
+                    <div class="day-card" data-day="월요일">
+                        <div class="day-header">월요일</div>
+                        <input type="text" class="day-event" placeholder="일정 입력 (예: 회의)">
+                        <div class="weather-inputs-day">
+                            <div class="weather-input-day">
+                                <label>기온 (°C)</label>
+                                <input type="number" class="day-temperature" placeholder="20" min="-20" max="50" value="">
+                            </div>
+                            <div class="weather-input-day">
+                                <label>습도 (%)</label>
+                                <input type="number" class="day-humidity" placeholder="60" min="0" max="100" value="">
+                            </div>
+                            <div class="weather-input-day">
+                                <label>날씨</label>
+                                <select class="day-weather">
+                                    <option value="맑음">맑음</option>
+                                    <option value="비">비</option>
+                                    <option value="눈">눈</option>
+                                    <option value="흐림">흐림</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>활동 유형</label>
+                                <select class="day-activity-type">
+                                    <option value="">선택</option>
+                                    <option value="공식">공식</option>
+                                    <option value="비공식">비공식</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>장소</label>
+                                <select class="day-location">
+                                    <option value="실외">실외</option>
+                                    <option value="실내">실내</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>시간대</label>
+                                <select class="day-time">
+                                    <option value="낮">낮</option>
+                                    <option value="밤">밤</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-card" data-day="화요일">
+                        <div class="day-header">화요일</div>
+                        <input type="text" class="day-event" placeholder="일정 입력 (예: 운동)">
+                        <div class="weather-inputs-day">
+                            <div class="weather-input-day">
+                                <label>기온 (°C)</label>
+                                <input type="number" class="day-temperature" placeholder="20" min="-20" max="50" value="">
+                            </div>
+                            <div class="weather-input-day">
+                                <label>습도 (%)</label>
+                                <input type="number" class="day-humidity" placeholder="60" min="0" max="100" value="">
+                            </div>
+                            <div class="weather-input-day">
+                                <label>날씨</label>
+                                <select class="day-weather">
+                                    <option value="맑음">맑음</option>
+                                    <option value="비">비</option>
+                                    <option value="눈">눈</option>
+                                    <option value="흐림">흐림</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>활동 유형</label>
+                                <select class="day-activity-type">
+                                    <option value="">선택</option>
+                                    <option value="공식">공식</option>
+                                    <option value="비공식">비공식</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>장소</label>
+                                <select class="day-location">
+                                    <option value="실외">실외</option>
+                                    <option value="실내">실내</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>시간대</label>
+                                <select class="day-time">
+                                    <option value="낮">낮</option>
+                                    <option value="밤">밤</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-card" data-day="수요일">
+                        <div class="day-header">수요일</div>
+                        <input type="text" class="day-event" placeholder="일정 입력 (예: 회의)">
+                        <div class="weather-inputs-day">
+                            <div class="weather-input-day">
+                                <label>기온 (°C)</label>
+                                <input type="number" class="day-temperature" placeholder="20" min="-20" max="50" value="">
+                            </div>
+                            <div class="weather-input-day">
+                                <label>습도 (%)</label>
+                                <input type="number" class="day-humidity" placeholder="60" min="0" max="100" value="">
+                            </div>
+                            <div class="weather-input-day">
+                                <label>날씨</label>
+                                <select class="day-weather">
+                                    <option value="맑음">맑음</option>
+                                    <option value="비">비</option>
+                                    <option value="눈">눈</option>
+                                    <option value="흐림">흐림</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>활동 유형</label>
+                                <select class="day-activity-type">
+                                    <option value="">선택</option>
+                                    <option value="공식">공식</option>
+                                    <option value="비공식">비공식</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>장소</label>
+                                <select class="day-location">
+                                    <option value="실외">실외</option>
+                                    <option value="실내">실내</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>시간대</label>
+                                <select class="day-time">
+                                    <option value="낮">낮</option>
+                                    <option value="밤">밤</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-card" data-day="목요일">
+                        <div class="day-header">목요일</div>
+                        <input type="text" class="day-event" placeholder="일정 입력 (예: 데이트)">
+                        <div class="weather-inputs-day">
+                            <div class="weather-input-day">
+                                <label>기온 (°C)</label>
+                                <input type="number" class="day-temperature" placeholder="20" min="-20" max="50" value="">
+                            </div>
+                            <div class="weather-input-day">
+                                <label>습도 (%)</label>
+                                <input type="number" class="day-humidity" placeholder="60" min="0" max="100" value="">
+                            </div>
+                            <div class="weather-input-day">
+                                <label>날씨</label>
+                                <select class="day-weather">
+                                    <option value="맑음">맑음</option>
+                                    <option value="비">비</option>
+                                    <option value="눈">눈</option>
+                                    <option value="흐림">흐림</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>활동 유형</label>
+                                <select class="day-activity-type">
+                                    <option value="">선택</option>
+                                    <option value="공식">공식</option>
+                                    <option value="비공식">비공식</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>장소</label>
+                                <select class="day-location">
+                                    <option value="실외">실외</option>
+                                    <option value="실내">실내</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>시간대</label>
+                                <select class="day-time">
+                                    <option value="낮">낮</option>
+                                    <option value="밤">밤</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-card" data-day="금요일">
+                        <div class="day-header">금요일</div>
+                        <input type="text" class="day-event" placeholder="일정 입력">
+                        <div class="weather-inputs-day">
+                            <div class="weather-input-day">
+                                <label>기온 (°C)</label>
+                                <input type="number" class="day-temperature" placeholder="20" min="-20" max="50" value="">
+                            </div>
+                            <div class="weather-input-day">
+                                <label>습도 (%)</label>
+                                <input type="number" class="day-humidity" placeholder="60" min="0" max="100" value="">
+                            </div>
+                            <div class="weather-input-day">
+                                <label>날씨</label>
+                                <select class="day-weather">
+                                    <option value="맑음">맑음</option>
+                                    <option value="비">비</option>
+                                    <option value="눈">눈</option>
+                                    <option value="흐림">흐림</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>활동 유형</label>
+                                <select class="day-activity-type">
+                                    <option value="">선택</option>
+                                    <option value="공식">공식</option>
+                                    <option value="비공식">비공식</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>장소</label>
+                                <select class="day-location">
+                                    <option value="실외">실외</option>
+                                    <option value="실내">실내</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>시간대</label>
+                                <select class="day-time">
+                                    <option value="낮">낮</option>
+                                    <option value="밤">밤</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-card" data-day="토요일">
+                        <div class="day-header">토요일</div>
+                        <input type="text" class="day-event" placeholder="일정 입력">
+                        <div class="weather-inputs-day">
+                            <div class="weather-input-day">
+                                <label>기온 (°C)</label>
+                                <input type="number" class="day-temperature" placeholder="20" min="-20" max="50" value="">
+                            </div>
+                            <div class="weather-input-day">
+                                <label>습도 (%)</label>
+                                <input type="number" class="day-humidity" placeholder="60" min="0" max="100" value="">
+                            </div>
+                            <div class="weather-input-day">
+                                <label>날씨</label>
+                                <select class="day-weather">
+                                    <option value="맑음">맑음</option>
+                                    <option value="비">비</option>
+                                    <option value="눈">눈</option>
+                                    <option value="흐림">흐림</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>활동 유형</label>
+                                <select class="day-activity-type">
+                                    <option value="">선택</option>
+                                    <option value="공식">공식</option>
+                                    <option value="비공식">비공식</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>장소</label>
+                                <select class="day-location">
+                                    <option value="실외">실외</option>
+                                    <option value="실내">실내</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>시간대</label>
+                                <select class="day-time">
+                                    <option value="낮">낮</option>
+                                    <option value="밤">밤</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-card" data-day="일요일">
+                        <div class="day-header">일요일</div>
+                        <input type="text" class="day-event" placeholder="일정 입력">
+                        <div class="weather-inputs-day">
+                            <div class="weather-input-day">
+                                <label>기온 (°C)</label>
+                                <input type="number" class="day-temperature" placeholder="20" min="-20" max="50" value="">
+                            </div>
+                            <div class="weather-input-day">
+                                <label>습도 (%)</label>
+                                <input type="number" class="day-humidity" placeholder="60" min="0" max="100" value="">
+                            </div>
+                            <div class="weather-input-day">
+                                <label>날씨</label>
+                                <select class="day-weather">
+                                    <option value="맑음">맑음</option>
+                                    <option value="비">비</option>
+                                    <option value="눈">눈</option>
+                                    <option value="흐림">흐림</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>활동 유형</label>
+                                <select class="day-activity-type">
+                                    <option value="">선택</option>
+                                    <option value="공식">공식</option>
+                                    <option value="비공식">비공식</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>장소</label>
+                                <select class="day-location">
+                                    <option value="실외">실외</option>
+                                    <option value="실내">실내</option>
+                                </select>
+                            </div>
+                            <div class="weather-input-day">
+                                <label>시간대</label>
+                                <select class="day-time">
+                                    <option value="낮">낮</option>
+                                    <option value="밤">밤</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="recommend-outfits" class="recommend-btn">코디 추천 받기</button>
+            </section>
+
+            <!-- 코디 추천 결과 섹션 -->
+            <section class="recommendations-section" id="recommendations-section" style="display: none;">
+                <h2>✨ 추천 코디</h2>
+                <div id="recommendations-list"></div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
