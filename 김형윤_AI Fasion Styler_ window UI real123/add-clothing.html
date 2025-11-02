@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 윈도우 호환성을 위한 폰트 preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>옷 등록 - 패션 스타일링 AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>➕ 옷 등록</h1>
+            <p>옷장에 새로운 옷을 추가하세요</p>
+        </header>
+
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">🏠 메인</a>
+            <a href="add-clothing.html" class="nav-link active">➕ 옷 등록</a>
+        </nav>
+
+        <div class="main-content">
+            <section class="add-clothing-section full-width">
+                <h2>새 옷 등록</h2>
+                <div class="add-clothing-form">
+                    <div class="form-group">
+                        <label>옷 사진</label>
+                        <div class="image-upload-area" id="image-upload-area">
+                            <input type="file" id="clothing-image" accept="image/*" style="display: none;">
+                            <div class="image-preview-container">
+                                <img id="image-preview" src="" alt="미리보기" style="display: none;">
+                                <div class="upload-placeholder" id="upload-placeholder">
+                                    <span class="upload-icon">📷</span>
+                                    <span>사진을 클릭하여 업로드</span>
+                                </div>
+                            </div>
+                            <button type="button" class="remove-image-btn" id="remove-image-btn" style="display: none;">이미지 제거</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="clothing-name">옷 이름 *</label>
+                        <input type="text" id="clothing-name" placeholder="예: 흰 셔츠">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="clothing-category">카테고리 *</label>
+                            <select id="clothing-category">
+                                <option value="">선택하세요</option>
+                                <option value="아우터">아우터</option>
+                                <option value="상의">상의</option>
+                                <option value="하의">하의</option>
+                                <option value="신발">신발</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="clothing-season">계절 *</label>
+                            <select id="clothing-season">
+                                <option value="">선택하세요</option>
+                                <option value="봄">봄</option>
+                                <option value="여름">여름</option>
+                                <option value="가을">가을</option>
+                                <option value="겨울">겨울</option>
+                                <option value="사계절">사계절</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="clothing-tags">스타일 태그 *</label>
+                        <input type="text" id="clothing-tags" placeholder="쉼표로 구분 (예: 회의, 포멀)">
+                        <small>예: 회의, 운동, 캐주얼, 데이트, 포멀</small>
+                    </div>
+
+                    <div class="form-actions">
+                        <button id="add-clothing" class="submit-btn">옷 등록하기</button>
+                        <a href="index.html" class="cancel-btn">취소</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="add-clothing.js"></script>
+</body>
+</html>
+

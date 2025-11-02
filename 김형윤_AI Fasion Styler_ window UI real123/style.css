@@ -1,0 +1,917 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 윈도우에서 이모지 렌더링 개선을 위한 전역 스타일 */
+html {
+    /* 윈도우 IE/Edge 호환성 */
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+    /* 윈도우에서 이모지 렌더링 개선 */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* 이모지 폰트 지원 */
+    font-feature-settings: "liga" on, "calt" on;
+    /* 윈도우 IE/Edge 호환성 */
+    -ms-overflow-style: scrollbar;
+}
+
+/* 윈도우에서 이모지가 포함된 모든 요소에 적용 */
+h1, h2, .nav-link, .no-image-placeholder, .outfit-item-no-image, .upload-icon {
+    font-variant-emoji: emoji;
+    -webkit-font-feature-settings: "liga" on, "calt" on;
+    font-feature-settings: "liga" on, "calt" on;
+}
+
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* 네비게이션 */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.nav-link {
+    padding: 12px 24px;
+    background: white;
+    color: #667eea;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.nav-link.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+section {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #667eea;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 10px;
+}
+
+/* 옷 등록 섹션 */
+.add-clothing-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.add-clothing-section.full-width {
+    max-width: 100%;
+}
+
+.add-clothing-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.form-group small {
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: -5px;
+}
+
+/* 이미지 업로드 영역 */
+.image-upload-area {
+    position: relative;
+}
+
+.image-preview-container {
+    width: 100%;
+    height: 200px;
+    border: 2px dashed #667eea;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    background: #f8f9fa;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.image-preview-container:hover {
+    border-color: #764ba2;
+    background: #f0f0f0;
+}
+
+#image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #667eea;
+    font-size: 0.9rem;
+}
+
+.upload-icon {
+    font-size: 3rem;
+}
+
+.remove-image-btn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.remove-image-btn:hover {
+    background: #ee5a5a;
+}
+
+/* 추출된 색상 표시 */
+.extracted-colors-display {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+}
+
+.color-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.color-label {
+    font-weight: 600;
+    color: #667eea;
+    font-size: 0.95rem;
+}
+
+.color-palette {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+}
+
+.color-swatch {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+}
+
+.color-name {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.color-item {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.color-item:hover {
+    transform: translateY(-3px);
+}
+
+.color-item.selected {
+    opacity: 1;
+}
+
+.check-mark {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #667eea;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.submit-btn {
+    flex: 1;
+    padding: 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.cancel-btn {
+    flex: 1;
+    padding: 16px;
+    background: #e0e0e0;
+    color: #333;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+}
+
+.cancel-btn:hover {
+    background: #d0d0d0;
+}
+
+/* 옷장 관리 스타일 */
+.wardrobe-section {
+    grid-column: 1;
+}
+
+.wardrobe-filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.wardrobe-filter select {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.wardrobe-filter select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.wardrobe-list {
+    max-height: 600px;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.clothing-item {
+    background: #f8f9fa;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #e0e0e0;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.clothing-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.clothing-item.status-washing {
+    opacity: 0.7;
+    border-color: #ff9800;
+}
+
+.clothing-item.status-clean {
+    border-color: #4caf50;
+}
+
+.clothing-item.status-ready {
+    border-color: #2196f3;
+}
+
+.clothing-image-container {
+    width: 100%;
+    height: 180px;
+    background: #e0e0e0;
+    overflow: hidden;
+    position: relative;
+}
+
+.washing-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 152, 0, 0.8);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1rem;
+    z-index: 1;
+}
+
+.clothing-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    color: #999;
+    font-size: 2rem;
+}
+
+.clothing-info {
+    padding: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.clothing-info strong {
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.clothing-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.category-badge,
+.season-badge,
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.category-badge {
+    background: #667eea;
+    color: white;
+}
+
+.season-badge {
+    background: #ffc107;
+    color: #333;
+}
+
+.status-badge.status-washing {
+    background: #ff9800;
+    color: white;
+}
+
+.status-badge.status-clean {
+    background: #4caf50;
+    color: white;
+}
+
+.status-badge.status-ready {
+    background: #2196f3;
+    color: white;
+}
+
+.clothing-info .tags {
+    margin-top: auto;
+}
+
+.clothing-info .tags span {
+    display: inline-block;
+    background: #e0e0e0;
+    padding: 3px 8px;
+    border-radius: 12px;
+    margin-right: 5px;
+    margin-top: 5px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.clothing-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    margin-top: auto;
+}
+
+.laundry-btn {
+    background: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.laundry-btn:hover {
+    background: #f57c00;
+}
+
+.delete-clothing {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.3s;
+    border-radius: 8px;
+}
+
+.delete-clothing:hover {
+    background: #ee5a5a;
+}
+
+.empty-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #999;
+    padding: 40px;
+    font-style: italic;
+}
+
+/* 기온/습도 섹션 스타일 */
+.weather-section {
+    grid-column: 1 / -1;
+}
+
+.weather-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 15px;
+    align-items: end;
+    margin-bottom: 15px;
+}
+
+.weather-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.weather-input-group label {
+    font-weight: 600;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.weather-input-group input {
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    font-family: inherit;
+}
+
+.weather-input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.weather-btn {
+    padding: 12px 24px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    height: fit-content;
+}
+
+.weather-btn:hover {
+    background: #5568d3;
+}
+
+.weather-display {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.weather-display p {
+    margin: 0;
+}
+
+/* 일정 관리 스타일 */
+.schedule-section {
+    grid-column: 1 / -1;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.day-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.day-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.day-header {
+    font-weight: 600;
+    color: #667eea;
+    font-size: 1.1rem;
+}
+
+.day-event {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+    transition: border-color 0.3s;
+    font-family: inherit;
+}
+
+.day-event:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.weather-inputs-day {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.weather-input-day {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.weather-input-day label {
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.weather-input-day input {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-align: center;
+    transition: border-color 0.3s;
+    font-family: inherit;
+}
+
+.weather-input-day input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.recommend-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.recommend-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* 추천 결과 스타일 */
+.recommendations-section {
+    grid-column: 1 / -1;
+}
+
+.recommendation-item {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-left: 5px solid #667eea;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.recommendation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.recommendation-day {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #667eea;
+}
+
+.recommendation-event {
+    background: #667eea;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.recommendation-weather {
+    background: #f0f0f0;
+    color: #555;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.outfit-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.outfit-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.outfit-item-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #f0f0f0;
+}
+
+.outfit-item-no-image {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    border-radius: 8px;
+    color: #999;
+    font-size: 2rem;
+}
+
+.outfit-item-category {
+    font-size: 0.85rem;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.outfit-item-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+}
+
+.recommendation-reason {
+    background: #fff9e6;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 3px solid #ffc107;
+    font-size: 0.95rem;
+    color: #666;
+    margin-top: 10px;
+}
+
+.no-outfit {
+    color: #999;
+    font-style: italic;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .add-clothing-section {
+        position: static;
+        max-height: none;
+    }
+    
+    .wardrobe-section {
+        grid-column: 1;
+    }
+    
+    .schedule-section {
+        grid-column: 1;
+    }
+    
+    .recommendations-section {
+        grid-column: 1;
+    }
+    
+    .calendar {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .calendar {
+        grid-template-columns: 1fr;
+    }
+    
+    .wardrobe-list {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
